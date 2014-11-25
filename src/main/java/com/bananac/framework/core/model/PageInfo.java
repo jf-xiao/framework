@@ -3,6 +3,7 @@ package com.bananac.framework.core.model;
 /**
  * 分页
  * @author xiaojf 294825811@qq.com
+ * 2014-11-24
  */
 public class PageInfo {
     /**总记录数*/

@@ -3,6 +3,7 @@ package com.bananac.framework.core.model;
 /**
  * 排序
  * @author xiaojf 294825811@qq.com
+ * 2014-11-24
  */
 public class OrderInfo {
     /**降序*/

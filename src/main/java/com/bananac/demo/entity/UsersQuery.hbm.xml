@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <sql-query name="UsersQuery">
+		<![CDATA[
+            select USERC.TABLE_NAME, 
+            USERC.COLUMN_NAME, 
+            USERC.COMMENTS
+            from USER_COL_COMMENTS USERC
+            where 1 = 1
+            and USERC.COMMENTS like '%' || :comments || '%'
+            and USERC.TABLE_NAME = :tableName
+		]]>
+    </sql-query>
+</hibernate-mapping>

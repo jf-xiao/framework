@@ -1,15 +1,11 @@
 package com.bananac.framework.core.dao.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.persistence.Id;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -22,10 +18,15 @@ import org.hibernate.criterion.Restrictions;
 import com.bananac.framework.core.dao.BaseDao;
 import com.bananac.framework.core.model.OrderInfo;
 import com.bananac.framework.core.model.PageInfo;
-import com.bananac.framework.core.model.QueryCondition;
 import com.bananac.framework.core.util.BeanUtil;
 import com.bananac.framework.core.util.EntityUtil;
 
+/**
+ * 公共数据访问实现类
+ * @author xiaojf 294825811@qq.com
+ * @param <T>
+ * 2014-11-24
+ */
 public class BaseDaoImpl<T> implements BaseDao<T> {
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory; // 会话工厂
@@ -37,26 +38,55 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         clazz = (Class<T>) parameterizedType.getActualTypeArguments()[0];
     }
     
+    /**
+     * 获取Session
+     * @return
+     * 2014-11-24
+     */
     public Session getSession(){
         return this.sessionFactory.getCurrentSession();
     }
     
+    /**
+     * 刷新缓存,与数据库同步
+     * 2014-11-24
+     */
     public void flush(){
         this.getSession().flush();
     }
     
+    /**
+     * 清除缓存
+     * 2014-11-24
+     */
     public void clear(){
         this.getSession().clear();
     }
     
+    /**
+     * 关闭Session会话
+     * 2014-11-24
+     */
     public void close(){
         this.getSession().close();
     }
     
+    /**
+     * 将对象从缓存域中移除
+     * @param entity
+     * 2014-11-24
+     */
     public void evict(T entity){
         this.getSession().evict(entity);
     }
     
+    /**
+     * 复制对象
+     * @param entity 实体对象
+     * @param cls 目标Class类型
+     * @return
+     * 2014-11-24
+     */
     public T converEntity(Object entity,Class<?> cls){
         Object instance = null;
         try {

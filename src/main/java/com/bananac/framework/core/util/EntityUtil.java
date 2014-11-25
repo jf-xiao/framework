@@ -4,6 +4,11 @@ import java.lang.reflect.Field;
 
 import javax.persistence.Id;
 
+/**
+ * 实体工具类
+ * @author xiaojf 294825811@qq.com
+ * 2014-11-24
+ */
 public class EntityUtil {
     public static String getPkName(Class clazz) {
         String pkName = "";

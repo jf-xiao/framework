@@ -1,7 +1,5 @@
 package com.bananac.demo.service.test;
 
-import static org.junit.Assert.*;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -21,8 +19,8 @@ public class UserServiceTest {
         service.save();
     }*/
     
-    @Test
+    /*@Test
     public void userCount() {
         service.save();
-    }
+    }*/
 }

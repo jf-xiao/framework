@@ -1,5 +1,10 @@
 package com.bananac.framework.core.model;
 
+/**
+ * 查询条件
+ * @author xiaojf 294825811@qq.com
+ * 2014-11-24
+ */
 public class QueryCondition {
     public static final String OPERATE_TYPE_EQ = "eq";
     public static final String OPERATE_TYPE_ALLEQ = "alleq";
