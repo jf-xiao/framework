@@ -1,5 +1,7 @@
 package com.bananac.demo.service.test;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -22,5 +24,10 @@ public class UserServiceTest {
     /*@Test
     public void userCount() {
         service.save();
+    }*/
+    
+    /*@Test
+    public void test() throws IOException{
+        service.test();
     }*/
 }

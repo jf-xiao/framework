@@ -4,9 +4,9 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <sql-query name="UsersQuery">
+    <sql-query name="SysModularQuery">
 		<![CDATA[
-            from users
+            select * from sys_modular where id = :id and code in :code
 		]]>
     </sql-query>
 </hibernate-mapping>

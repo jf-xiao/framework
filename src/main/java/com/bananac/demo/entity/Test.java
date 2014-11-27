@@ -4,9 +4,11 @@
 package com.bananac.demo.entity;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.spi.NamedSQLQueryDefinition;
+import org.hibernate.mapping.Table;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -16,6 +18,10 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * 2014-11-25
  */
 public class Test {
+    
+    public void getHql(){
+        
+    }
 
     /**
      * @param args
@@ -32,6 +38,7 @@ public class Test {
         cfg.addInputStream(resources[0].getInputStream());
         cfg.buildMappings();
         Object obj = cfg.getNamedSQLQueries().get("UsersQuery");
+        
         NamedSQLQueryDefinition nsq = (NamedSQLQueryDefinition) obj;
         System.out.println(nsq.getQuery());
     }

@@ -1,5 +1,7 @@
 package com.bananac.demo.demo.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import com.bananac.demo.service.*;
@@ -21,14 +23,23 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         mv.addObject("message", "HelloMVC");
         mv.setViewName("users");
+        
+        try {
+            service.test();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return mv;
     }
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)
-    public ModelAndView count() {
+    public ModelAndView count() throws IOException {
 
         //int c = service.userCount();
-        service.save();
+        //service.userCount();
+        //service.test();
+        service.test2();
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("message", null);
