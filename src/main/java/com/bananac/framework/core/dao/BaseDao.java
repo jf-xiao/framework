@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.bananac.framework.core.model.OrderInfo;
 import com.bananac.framework.core.model.PageInfo;
+import com.bananac.framework.core.query.BaseQueryCondition;
+import com.bananac.framework.core.query.BaseQueryItem;
 
 /**
  * 公共数据访问接口
@@ -136,5 +138,24 @@ public interface BaseDao<T> {
      * 2014-11-24
      */
     public int getRowCount();
+    
+    /**
+     * 封装Hibernate的NamedQuery, 自动封装查询条件和结果,注意XXX.hbm.xml中填写的应该是原生SQL查询语句
+     * @param condition 查询条件
+     * @param item 查询结果
+     * @return
+     * 2014-11-26
+     */
+    public <ITEM extends BaseQueryItem> List<ITEM> findByNamedQuery(BaseQueryCondition condition ,Class<ITEM> item);
+    
+    /**
+     * 封装Hibernate的NamedQuery, 自动封装查询条件和结果,注意XXX.hbm.xml中填写的应该是原生SQL查询语句
+     * @param condition 查询条件
+     * @param item 查询结果
+     * @param page 分页
+     * @return
+     * 2014-11-26
+     */
+    public <ITEM extends BaseQueryItem> List<ITEM> findByNamedQuery(BaseQueryCondition condition ,Class<ITEM> item,PageInfo page);
     
 }
