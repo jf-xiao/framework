@@ -46,4 +46,19 @@ public class UserController {
         mv.setViewName("users");
         return mv;
     }
+    
+    @RequestMapping(value = "/count2", method = RequestMethod.GET)
+    public ModelAndView count2() throws IOException {
+
+        //int c = service.userCount();
+        //service.userCount();
+        //service.test();
+        service.test3();
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("message", null);
+        mv.setViewName("users");
+        return mv;
+    }
+    
 }

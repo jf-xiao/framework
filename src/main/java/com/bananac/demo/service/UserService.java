@@ -6,11 +6,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.spi.NamedSQLQueryDefinition;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +61,7 @@ public class UserService {
     public void test2() {
 
         SysModularQueryCondition condition = new SysModularQueryCondition();
-        condition.setId("1");
+        //condition.setId("1");
         List<String> codes = new ArrayList<String>();
         codes.add("1");
         codes.add("2");
@@ -114,6 +111,21 @@ public class UserService {
         System.out.println(nsq.getQuery());
 
         return nsq.getQuery();
+    }
+
+    /**
+     * 
+     * 2014-11-28
+     */
+    public void test3() {
+        SysModularQueryCondition condition = new SysModularQueryCondition();
+        //condition.setId("1");
+        List<String> codes = new ArrayList<String>();
+        codes.add("1");
+        codes.add("2");
+        condition.setCode(codes);
+        String sql = NamedQueryUtil.getDynamicSql(condition.getClass());
+        sql = NamedQueryUtil.filterQueryCondition(sql,condition);
     }
 
 }
