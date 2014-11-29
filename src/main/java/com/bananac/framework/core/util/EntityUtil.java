@@ -10,6 +10,7 @@ import javax.persistence.Id;
  * 2014-11-24
  */
 public class EntityUtil {
+    
     public static String getPkName(Class clazz) {
         String pkName = "";
         Field[] fields = clazz.getDeclaredFields();

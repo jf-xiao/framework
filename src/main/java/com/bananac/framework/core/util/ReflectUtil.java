@@ -2,6 +2,10 @@ package com.bananac.framework.core.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.bananac.demo.entity.SysModular;
 
@@ -11,6 +15,8 @@ import com.bananac.demo.entity.SysModular;
  * 2014-11-26
  */
 public class ReflectUtil {
+    
+    private static Logger logger = Logger.getLogger(ReflectUtil.class);
     
     /**
      * 根据class实例化对象,如<br/>
@@ -23,9 +29,9 @@ public class ReflectUtil {
         try {
             return clazz.newInstance();
         } catch (InstantiationException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
         
         return null;
@@ -71,7 +77,7 @@ public class ReflectUtil {
             field.setAccessible(true);
             return field.get(obj);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
         
         return null;
@@ -95,7 +101,7 @@ public class ReflectUtil {
             field.setAccessible(true);
             return field.getType().getName();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
         
         return null;
@@ -117,7 +123,7 @@ public class ReflectUtil {
             field.setAccessible(true);
             field.set(obj, value);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
     }
     
@@ -139,14 +145,31 @@ public class ReflectUtil {
             method.setAccessible(true);
             method.invoke(obj, params);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
+    }
+    
+    /**
+     * 获取类型的所有属性名称,如<br/>
+     * SysModular modular = new SysModular();<br/>
+     * ReflectUtil.getAllFieldNames(modular.getClass());
+     * @param clazz
+     * @return
+     * 2014-11-29
+     */
+    public static List<String> getAllFieldNames(Class clazz){
+        List<String> names = new ArrayList<String>();
+        Field[] fields = clazz.getDeclaredFields();
+        for(Field field : fields){
+            String name = field.getName();
+            names.add(name);
+        }
+        
+        return names;
     }
     
     public static void main(String[] args) {
         SysModular modular = new SysModular();
-        modular.setId("xiaojf");
-        String clazz = ReflectUtil.getFieldType(modular, "createTime");
-        System.out.println(clazz);
+        ReflectUtil.getAllFieldNames(modular.getClass());
     }
 }
