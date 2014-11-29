@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -31,6 +32,7 @@ import com.bananac.framework.core.util.BeanUtil;
 import com.bananac.framework.core.util.CamelCaseUtil;
 import com.bananac.framework.core.util.EntityUtil;
 import com.bananac.framework.core.util.ReflectUtil;
+import com.bananac.framework.core.util.XmlParseUtil;
 
 /**
  * 公共数据访问实现类
@@ -40,6 +42,8 @@ import com.bananac.framework.core.util.ReflectUtil;
  *            2014-11-24
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
+    private static Logger logger = Logger.getLogger(BaseDaoImpl.class);
+    
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory; // 会话工厂
 
@@ -105,7 +109,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             instance = cls.newInstance();
             BeanUtil.copyProperties(entity, instance);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
 
@@ -300,7 +304,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public <ITEM extends BaseQueryItem> List<ITEM> findByNamedQuery(BaseQueryCondition condition, Class<ITEM> itemClass,PageInfo page) {
         //获取condition类路径下的XXX.hbm.xml中描述的sql查询语句
-        String sql = NamedQueryUtil.getSql(condition.getClass());
+        String sql = NamedQueryUtil.getDynamicSql(condition.getClass());
+        //过滤查询条件
+        sql = NamedQueryUtil.filterQueryCondition(sql, condition);
+        System.out.println(sql);
         //创建会话
         Session session = this.getSession();
         //指定查询语句
@@ -319,7 +326,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
                         query.setParameter(param,ReflectUtil.getFieldValue(condition, param));
                     }
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                    logger.error(e.getMessage(),e);
                 }
             }
         }
@@ -354,7 +361,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
                 itemList.add(item);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
         return itemList;
     }
