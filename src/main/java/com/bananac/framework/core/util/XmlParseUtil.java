@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -28,7 +29,7 @@ public class XmlParseUtil {
     private static InputStream stream;
     private static Document document;
     
-    private static Logger logger = Logger.getLogger(XmlParseUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(XmlParseUtil.class);
 
     private XmlParseUtil() {
 

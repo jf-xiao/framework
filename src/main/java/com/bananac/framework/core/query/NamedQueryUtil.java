@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Element;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.spi.NamedSQLQueryDefinition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
 import com.bananac.framework.core.util.ReflectUtil;
@@ -21,7 +22,8 @@ import com.bananac.framework.core.util.XmlParseUtil;
  */
 public class NamedQueryUtil {
 
-    private static Logger logger = Logger.getLogger(NamedQueryUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(NamedQueryUtil.class);
+    
 
     private static Map<String, String> queryStringMap = new HashMap<String, String>();//查询缓存
 

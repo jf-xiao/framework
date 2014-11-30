@@ -5,7 +5,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bananac.demo.entity.SysModular;
 
@@ -16,7 +17,7 @@ import com.bananac.demo.entity.SysModular;
  */
 public class ReflectUtil {
     
-    private static Logger logger = Logger.getLogger(ReflectUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(ReflectUtil.class);
     
     /**
      * 根据class实例化对象,如<br/>

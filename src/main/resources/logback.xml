@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <jmxConfigurator />
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%thread] %-5level %logger{36}-%msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 输出到文件 -->
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 编码格式 -->
+        <Encoding>UTF-8</Encoding>
+        <!-- 文件路径和名称 -->
+        <file>../logs/bananac/bananac.log</file>
+        <!-- 每日生产文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 记录格式 -->
+            <fileNamePattern>../logs/bananac/bananac.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 保留 30天数据，默认无限 -->
+            <maxHistory>30</maxHistory>
+
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- project default level -->
+    <logger name="com.bananac" level="INFO" addtivity="false" />
+    <logger name="org.springframework.data" level="INFO" />
+    <logger name="org.springframework.core" level="INFO" />
+    <logger name="org.springframework.beans" level="INFO" />
+    <logger name="org.springframework.context" level="INFO" />
+    <logger name="org.springframework.http" level="INFO" />
+    <logger name="org.springframework.web" level="INFO" />
+    <logger name="jdbc.sqltiming" level="INFO" />
+    <!--<logger name="jdbc.sqlonly" level="INFO" /> -->
+    <!-- <logger name="org.apache.shiro" level="TRACE" /> <logger name="org.apache.shiro.util.ThreadContext" level="WARN" /> <logger name="org.apache.shiro.cache.ehcache.EhCache" level="WARN" /> -->
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="WARN" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
+
+    <root level="WARN">
+        <appender-ref ref="console" />
+        <appender-ref ref="rollingFile" />
+    </root>
+</configuration>

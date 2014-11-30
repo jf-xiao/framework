@@ -12,7 +12,6 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,6 +20,8 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bananac.framework.core.dao.BaseDao;
 import com.bananac.framework.core.model.OrderInfo;
@@ -32,7 +33,6 @@ import com.bananac.framework.core.util.BeanUtil;
 import com.bananac.framework.core.util.CamelCaseUtil;
 import com.bananac.framework.core.util.EntityUtil;
 import com.bananac.framework.core.util.ReflectUtil;
-import com.bananac.framework.core.util.XmlParseUtil;
 
 /**
  * 公共数据访问实现类
@@ -42,7 +42,7 @@ import com.bananac.framework.core.util.XmlParseUtil;
  *            2014-11-24
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
-    private static Logger logger = Logger.getLogger(BaseDaoImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(BaseDaoImpl.class);
     
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory; // 会话工厂
