@@ -65,11 +65,13 @@
     </servlet-mapping>
     
     <!-- log4j 配置 -->
-    <context-param>
+    <!-- <context-param>
         <param-name>webAppRootKey</param-name>
         <param-value>bananac.root</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-    </listener>
+    </listener> -->
+    <!-- log4jdbc -->
+
 </web-app>
