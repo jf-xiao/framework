@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
-import com.bananac.framework.core.util.ReflectUtil;
+import com.bananac.framework.core.spring.ReflectUtil;
 import com.bananac.framework.core.util.XmlParseUtil;
 
 /**

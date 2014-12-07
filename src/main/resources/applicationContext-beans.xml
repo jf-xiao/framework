@@ -23,4 +23,7 @@
             </list>
         </property>
     </bean>
+    
+    <!-- spring工具类 -->
+    <bean class="com.bananac.framework.core.util.SpringUtil"/>
 </beans>

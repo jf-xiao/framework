@@ -29,10 +29,10 @@ import com.bananac.framework.core.model.PageInfo;
 import com.bananac.framework.core.query.BaseQueryCondition;
 import com.bananac.framework.core.query.BaseQueryItem;
 import com.bananac.framework.core.query.NamedQueryUtil;
+import com.bananac.framework.core.spring.ReflectUtil;
 import com.bananac.framework.core.util.BeanUtil;
 import com.bananac.framework.core.util.CamelCaseUtil;
 import com.bananac.framework.core.util.EntityUtil;
-import com.bananac.framework.core.util.ReflectUtil;
 
 /**
  * 公共数据访问实现类
